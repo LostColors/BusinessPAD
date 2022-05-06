@@ -1,0 +1,20 @@
+.categories {
+  background-color: rgba(20, 162, 184, 0.721);
+}
+.inner-categories {
+  height: 60px;
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+.category {
+  color: #fff;
+  margin-right: 5rem;
+  margin-left: 2.4rem;
+  font-size: 20px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.category:hover {
+  color: rgb(238, 151, 65);
+}
