@@ -3,7 +3,14 @@
   margin-bottom: 3rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 2rem;
+}
+.inner-shop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 350px;
 }
 
 .shop-header .logo {
@@ -24,10 +31,10 @@
   margin-right: 10px;
 }
 
-.logotype {
-  font-size: 3rem;
-  text-decoration-line: none;
+.logo {
+  width: 260px;
 }
+
 a:hover {
   text-decoration: none;
 }

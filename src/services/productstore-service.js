@@ -49,7 +49,7 @@ export default class ProductStoreService {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(this.data);
-      }, 300);
+      }, 100);
     });
   }
 }
