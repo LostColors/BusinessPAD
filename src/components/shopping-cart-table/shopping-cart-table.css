@@ -9,6 +9,10 @@
   margin-right: 10px;
 }
 
+.disabled {
+  pointer-events: none;
+}
+
 .shopping-cart-table button {
   margin-left: 5px;
   margin-top: 5px;

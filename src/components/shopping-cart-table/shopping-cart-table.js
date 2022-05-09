@@ -10,15 +10,17 @@ import {
 import "./shopping-cart-table.css";
 
 const ShoppingCartTable = ({ onIncrease, onDecrease, onDelete, cartItems }) => {
-  //const cartLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
   const [cost, setCost] = useState(0);
-
   useEffect(() => {
     let a = 0;
     cartItems.forEach((el) => (a += el.total));
     setCost(a);
   }, [cartItems]);
-
+  const disabledButton = () => {
+    if (cost === 0) {
+      return "total-button disabled";
+    } else return "total-button";
+  };
   const renderRow = (item, idx) => {
     const { id, title, count, total } = item;
 
@@ -69,7 +71,13 @@ const ShoppingCartTable = ({ onIncrease, onDecrease, onDelete, cartItems }) => {
         <tbody>{cartItems.map(renderRow)}</tbody>
       </table>
 
-      <div className="total">Итого: {cost}₸</div>
+      {/* <div className="total">Итого: {cost}₸</div> */}
+      <button
+        className={`btn btn-info float-right ${disabledButton()}`}
+        onClick={() => console.log("Oformit")}
+      >
+        Итого: {cost}₸
+      </button>
     </div>
   );
 };

@@ -3,6 +3,7 @@ const initialState = {
   loading: true,
   error: null,
   cartItems: [],
+  logedIn: false,
 };
 
 const updateCartItems = (cartItems, item, idx) => {
@@ -44,6 +45,16 @@ const updateOrder = (state, productId, quantity) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case "LOGED_IN":
+      return {
+        ...state,
+        logedIn: true,
+      };
+    case "LOG_OUT":
+      return {
+        ...state,
+        logedIn: false,
+      };
     case "FETCH_PRODUCTS_REQUEST":
       return {
         ...state,
@@ -82,5 +93,4 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 };
-
 export default reducer;

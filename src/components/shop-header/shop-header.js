@@ -3,8 +3,9 @@ import "./shop-header.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logo } from "../../img/index";
+import { isLogedOut } from "../../actions";
 
-const ShopHeader = ({ cartItems }) => {
+const ShopHeader = ({ cartItems, logedIn, isLogedOut }) => {
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
@@ -12,6 +13,22 @@ const ShopHeader = ({ cartItems }) => {
     cartItems.forEach((el) => (q += el.count));
     setQuantity(q);
   }, [cartItems]);
+
+  const loginLogout = (logedIn) => {
+    if (!logedIn) {
+      return (
+        <Link to="/login">
+          <div>Войти</div>
+        </Link>
+      );
+    } else {
+      return (
+        <Link to="/">
+          <div onClick={() => isLogedOut()}>Выйти</div>
+        </Link>
+      );
+    }
+  };
 
   return (
     <header className="shop-header row">
@@ -21,7 +38,7 @@ const ShopHeader = ({ cartItems }) => {
       </Link>
       <div className="inner-shop-header">
         <div>О Компании</div>
-        <div>Войти</div>
+        {loginLogout(logedIn)}
         <Link to="/cart">
           <div className="shopping-cart">
             <i className="cart-icon fa fa-shopping-cart" />
@@ -33,9 +50,13 @@ const ShopHeader = ({ cartItems }) => {
   );
 };
 
-const mapStateToProps = ({ cartItems }) => {
+const mapStateToProps = ({ cartItems, logedIn }) => {
   return {
-    cartItems: cartItems,
+    cartItems,
+    logedIn,
   };
 };
-export default connect(mapStateToProps)(ShopHeader);
+const mapDispatchToProps = {
+  isLogedOut: isLogedOut,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ShopHeader);

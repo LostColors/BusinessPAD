@@ -1,3 +1,13 @@
+export const isLogedIn = () => {
+  return {
+    type: "LOGED_IN",
+  };
+};
+export const isLogedOut = () => {
+  return {
+    type: "LOG_OUT",
+  };
+};
 const productsRequested = () => {
   return {
     type: "FETCH_PRODUCTS_REQUEST",

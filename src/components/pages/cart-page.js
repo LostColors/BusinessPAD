@@ -1,7 +1,17 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
+import { connect } from "react-redux";
+import ShoppingCartTable from "../shopping-cart-table";
 
-const CartPage = () => {
-  return <div>Корзина</div>;
+const CartPage = ({ logedIn }) => {
+  if (!logedIn) {
+    return <Navigate to="/login" />;
+  }
+  return <ShoppingCartTable />;
 };
-
-export default CartPage;
+const mapStateToProps = ({ logedIn }) => {
+  return {
+    logedIn,
+  };
+};
+export default connect(mapStateToProps)(CartPage);
