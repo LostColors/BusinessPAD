@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-
+import TotalButton from "./total-button";
+import OrderButton from "./order-button";
+import { useLocation } from "react-router-dom";
 import {
   productAddedToCart,
   productRemovedFromCart,
@@ -10,17 +12,15 @@ import {
 import "./shopping-cart-table.css";
 
 const ShoppingCartTable = ({ onIncrease, onDecrease, onDelete, cartItems }) => {
+  const location = useLocation();
+
   const [cost, setCost] = useState(0);
   useEffect(() => {
     let a = 0;
     cartItems.forEach((el) => (a += el.total));
     setCost(a);
   }, [cartItems]);
-  const disabledButton = () => {
-    if (cost === 0) {
-      return "total-button disabled";
-    } else return "total-button";
-  };
+
   const renderRow = (item, idx) => {
     const { id, title, count, total } = item;
 
@@ -70,14 +70,11 @@ const ShoppingCartTable = ({ onIncrease, onDecrease, onDelete, cartItems }) => {
 
         <tbody>{cartItems.map(renderRow)}</tbody>
       </table>
-
-      {/* <div className="total">Итого: {cost}₸</div> */}
-      <button
-        className={`btn btn-info float-right ${disabledButton()}`}
-        onClick={() => console.log("Oformit")}
-      >
-        Итого: {cost}₸
-      </button>
+      {location.pathname === "/" ? (
+        <TotalButton cost={cost} />
+      ) : (
+        <OrderButton cost={cost} />
+      )}
     </div>
   );
 };

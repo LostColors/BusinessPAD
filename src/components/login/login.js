@@ -7,12 +7,9 @@ class Login extends React.Component {
   redirectComponent = () => {
     return <Navigate to="/" />;
   };
-  componentDidMount() {
-    console.log(this.props.logedIn);
-  }
+
   componentDidUpdate(prevProps) {
     if (this.props.logedIn !== prevProps.logedIn) {
-      console.log(this.props.logedIn);
     }
   }
   render() {
