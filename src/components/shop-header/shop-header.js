@@ -37,7 +37,10 @@ const ShopHeader = ({ cartItems, logedIn, isLogedOut }) => {
         <img className="logo" src={logo} alt="Home" />
       </Link>
       <div className="inner-shop-header">
-        <div>О Компании</div>
+        <Link to="/about">
+          <div>О Компании</div>
+        </Link>
+
         {loginLogout(logedIn)}
         <Link to="/cart">
           <div className="shopping-cart">
